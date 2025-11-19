@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const App = () => {
   const [todo, setTodo] = useState([]);
@@ -30,8 +30,8 @@ const App = () => {
     setEditItem(index);
   };
   return (
-    <div>
-      <b>Todo</b>
+    <div className="todo-container">
+      <h1>TODO...</h1>
       <input
         type="text"
         placeholder="Enter Item"
@@ -39,16 +39,24 @@ const App = () => {
         onChange={(e) => setData(e.target.value)}
       />
 
-      <button onClick={showData}>{changeButton?"Update":"Add"}</button>
-      {todo.map((item, index) => (
-        <ul key={index}>
-          <li>
-            {item}
-            <button onClick={() => deleteTodo(index)}>Delete</button>
-            <button onClick={() => editTodo(index)}>Edit</button>
-          </li>
-        </ul>
-      ))}
+      <button onClick={showData} className="changable-btn">
+        {changeButton ? "Update" : "Add"}
+      </button>
+      <div className="list-aria">
+        {todo.map((item, index) => (
+          <ul key={index}>
+            <li>
+              {item}
+              <button onClick={() => deleteTodo(index)} className="del-btn">
+                Delete
+              </button>
+              <button onClick={() => editTodo(index)} className="edit-btn">
+                Edit
+              </button>
+            </li>
+          </ul>
+        ))}
+      </div>
     </div>
   );
 };
